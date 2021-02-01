@@ -1,1 +1,1 @@
-web: java -jar target/csvtoxml_heroku.jar
+web: java -Dserver.port=$PORT -jar target/csvtoxml_heroku-0.0.1-SNAPSHOT.jar
