@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -38,9 +40,9 @@ public class ConverterController {
 
     @PostMapping("converter")
     @ResponseBody
-    public void uploadFile(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
+    public void uploadFile(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException, TransformerException, ParserConfigurationException {
         if(file.isEmpty()){
-            log.warn("File empty");
+            log.error("File empty");
         }
         _converterService.converter(file, response);
     }

@@ -22,51 +22,13 @@ import java.util.ArrayList;
 public class XMLBuilder {
 
     private ArrayList<String[]> fileColumns;
-    private String CSVFilePath, XMLFilePath;
-    private final Logger log = LoggerFactory.getLogger(XMLBuilder.class);
-    public static final String CSV_DEFAULT_FILE_PATH = "CSV\\sample_colon.csv";
-    public static final String XML_DEFAULT_FILE_PATH = "XML\\newXML.xml";
-    public static final String[] errorMessages = {"Error in readFile", "Error in generateRandomProductXML",
-            "Error in saveDocumentAsFile", "File is null"};
-    public static final String DESKTOP = "Desktop";
     public static final String ROOT = "root";
     public static final String REGISTRY = "registry";
-    public static final String HOME = "user.home";
-
-    public String getCSVFilePath() {
-        return CSVFilePath;
-    }
-
-    public String getXMLFilePath() {
-        return XMLFilePath;
-    }
 
     public XMLBuilder() {
 
     }
 
-    /**
-     * Checks args input whether if they are empty and if there is a CSV file with this name.
-     *
-     * @param CSVFilePath Path of the target CSV file that is going to be parsed.
-     * @param XMLFilePath Path of the destiny XML file.
-     */
-    public void checkArgs(String CSVFilePath, String XMLFilePath) {
-        if (!CSVFilePath.isEmpty()) {
-            if (!(new File(String.format("%s\\%s\\%s", System.getProperty(XMLBuilder.HOME), XMLBuilder.DESKTOP, CSVFilePath)).exists())) {
-                this.CSVFilePath = XMLBuilder.CSV_DEFAULT_FILE_PATH;
-            } else {
-                this.CSVFilePath = CSVFilePath;
-            }
-        } else {
-            this.CSVFilePath = XMLBuilder.CSV_DEFAULT_FILE_PATH;
-        }
-        if (XMLFilePath.isEmpty()) {
-            this.XMLFilePath = XMLBuilder.XML_DEFAULT_FILE_PATH;
-        } else {
-            this.XMLFilePath = XMLFilePath;
-        }
-    }
 
     /**
      * Creates XML structure in a Oldschool way and uses the content stored in ArrayList<String[]>

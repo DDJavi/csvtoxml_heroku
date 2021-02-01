@@ -33,7 +33,7 @@ public class ConverterService {
     }
 
 
-    public void converter(MultipartFile file, HttpServletResponse response) throws IOException {
+    public void converter(MultipartFile file, HttpServletResponse response) throws IOException, ParserConfigurationException, TransformerException {
         try {
             _uploadFileService.saveFile(file,folder, FILE_CSV);
             log.info("--Csv inicial guardado--");
@@ -41,24 +41,18 @@ public class ConverterService {
             throw new RuntimeException(e);
         }
         XMLBuilder builder = new XMLBuilder();
-        try {
-            builder.readFile(folder+file.getOriginalFilename());
-            Document document = builder.generateRandomProductXML();
-            File xml = builder.saveDocumentAsFile(folder+FILE_XML, document, true);
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
-            e.printStackTrace();
-        }
 
-        response.setContentType("application/zip");
-        response.setHeader("Content-Disposition", "attachment; filename=\""
-                + FILE_XML +"\"");
-        InputStream is = new FileInputStream(folder+FILE_XML);
+        builder.readFile(folder+FILE_CSV);
+        Document document = builder.generateRandomProductXML();
+        response.setContentType("application/xml");
+        response.setHeader("Content-Disposition", "attachment; filename="
+                + FILE_XML);
+        InputStream is = new FileInputStream(builder.saveDocumentAsFile(folder+FILE_XML, document, true));
         IOUtils.copy(is, response.getOutputStream());
         response.flushBuffer();
+
+        File csv = new File(folder+FILE_CSV);
+        csv.delete();
 
     }
 

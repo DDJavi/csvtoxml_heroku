@@ -23,17 +23,20 @@
     .custom-file-control {
         white-space: nowrap;
     }
+    .fondo{
+        background-image:url(background.jpg);
+    }
 </style>
 <body>
-<div class="container" style="margin-top: 30px">
+<div class="container" style="margin-top: 100px;">
     <div class="card">
-        <div class="jumbotron">
+        <div class="jumbotron fondo">
             <h1 style="text-align: center;">CSV CONVERTER</h1>
         </div>
         <form method="post" th:action="@{/converter}" enctype="multipart/form-data" id="fileUploadForm" class="container">
             <div class="form-group">
                 <label class="custom-file" id="customFile">
-                    <input type="file" accept=".csv" class="custom-file-input" name="file" aria-describedby="fileHelp">
+                    <input type="file" accept=".csv" class="custom-file-input" name="file" aria-describedby="fileHelp" required>
                     <span class="custom-file-control form-control-file"> Selecciona un archivo csv </span>
                 </label>
             </div>
