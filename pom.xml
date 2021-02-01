@@ -11,7 +11,7 @@
     <groupId>com.borjamoll</groupId>
     <artifactId>csvtoxml_heroku</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>csvtoxml_heroku</name>
     <description>Microservice deployment</description>
     <properties>
