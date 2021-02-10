@@ -44,6 +44,8 @@ public class ConverterService {
 
         builder.readFile(folder+FILE_CSV);
         Document document = builder.generateRandomProductXML();
+
+
         response.setContentType("application/xml");
         response.setHeader("Content-Disposition", "attachment; filename="
                 + FILE_XML);

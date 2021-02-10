@@ -25,11 +25,11 @@ import org.slf4j.LoggerFactory;
 public class ConverterController {
 
     private Logger log = LoggerFactory.getLogger(getClass());
-    private final UploadFileService _uploadFileService;
+
     final ConverterService _converterService;
 
-    public ConverterController(UploadFileService _uploadFileService, ConverterService _converterService) {
-        this._uploadFileService = _uploadFileService;
+    public ConverterController(ConverterService _converterService) {
+
         this._converterService = _converterService;
     }
 
@@ -41,9 +41,7 @@ public class ConverterController {
     @PostMapping("converter")
     @ResponseBody
     public void uploadFile(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException, TransformerException, ParserConfigurationException {
-        if(file.isEmpty()){
-            log.error("File empty");
-        }
+
         _converterService.converter(file, response);
     }
 }
